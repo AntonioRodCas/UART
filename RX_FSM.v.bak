@@ -1,0 +1,35 @@
+/******************************************************************* 
+* Name:
+*	RX_FSM.v
+* Description:
+* 	This is a Finite State Machine for RX module of the UART
+* Inputs:
+*  SerialDataIn: Serial Data Input 
+*	clk: Clock signal 
+*  reset: Reset signal
+*  shift: Shift enable input
+* Outputs:
+* 	DataRX: Parallel Data Output
+* Versión:  
+*	1.0
+* Author: 
+*	José Antonio Rodríguez Castañeda  md193781
+* Date :
+*	V1.0       24/10/2018
+* 
+*********************************************************************/
+
+module RX_FSM
+#(
+	parameter WORD_LENGTH = 8
+)
+
+(
+	input SerialDataIn,
+	input clk,
+	input reset,
+	input shift,
+	
+	output reg [WORD_LENGTH - 1 : 0] DataRX
+
+);
