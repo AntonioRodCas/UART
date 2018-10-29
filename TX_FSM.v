@@ -62,7 +62,7 @@ FSM_sampling 		   	        //Counter for the FSM bit with 153,846Hz
 FlagCounter
 #(
 	.NBITS(8),
-	.VALUE((WORD_LENGTH)*16)
+	.VALUE((WORD_LENGTH+1)*16)
 ) 
 FSM_counter 		   	        //Counter for the FSM bit counting
 (

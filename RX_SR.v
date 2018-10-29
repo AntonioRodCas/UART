@@ -30,26 +30,34 @@ module RX_SR
 	input reset,
 	input shift,
 	
-	output reg [WORD_LENGTH - 1 : 0] DataRX
+	output [WORD_LENGTH - 1 : 0] DataRX,
+	
+	output parity,
+	output parity_int
 
 );
+
+reg [WORD_LENGTH : 0] DataRX_reg;
 
 always @(posedge clk or negedge reset) 
 begin
 	if(reset==1'b0) 
 	begin
-		DataRX<= {(WORD_LENGTH-1) {1'b0}};
+		DataRX_reg<= {(WORD_LENGTH) {1'b0}};
 	end
 	
 	else 
 		if (shift)
-			DataRX<={SerialDataIn , DataRX[WORD_LENGTH-1:1]};
+			DataRX_reg<={SerialDataIn , DataRX_reg[WORD_LENGTH:1]};
 	
 		else
-			DataRX<=DataRX;
+			DataRX_reg<=DataRX_reg;
 
 end
 
+assign DataRX = DataRX_reg [WORD_LENGTH-1:0];
+assign parity = DataRX_reg [WORD_LENGTH];
 
+assign parity_int  = DataRX[7] ^ DataRX[6] ^ DataRX[5] ^ DataRX[4] ^ DataRX[3] ^ DataRX[2] ^ DataRX[1] ^ DataRX[0];
 
 endmodule

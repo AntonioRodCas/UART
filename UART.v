@@ -54,9 +54,14 @@ wire transmit_int;
 
 wire RX_FLAG_EN;
 
+wire parity_line;
+wire parity_cal;
+wire parity_wir;
+
 // Modules implementation 
 
 assign DATARX = DATA_RX_wir;
+assign parity_wir = parity_line ^ parity_cal;
 
 //------RX modules
 
@@ -70,6 +75,8 @@ SR_RX			  					 	//RX input shift register
 	.clk(clk),
 	.reset(reset),
 	.shift(shift_RX),
+	.parity(parity_line),
+	.parity_int(parity_cal),
 	
 	.DataRX(DATA_RX_wir)
 
@@ -143,6 +150,24 @@ RX_FLAG_REG			  					 	//RX ready flag register
 	.Data_Output(RX_FLAG)
 
 );
+
+//----Register
+
+Register
+#(
+	.WORD_LENGTH(1)
+) 
+parity_error_REG			  					 	//parity flag register
+(
+	.clk(clk),
+	.reset(reset),
+	.enable(RX_FLAG_EN),
+	.Data_Input(parity_wir),
+	
+	.Data_Output(ParityError)
+
+);
+
 
 assign RX_FLAG_EN = RX_ready | Clear_RX_Flag;
 

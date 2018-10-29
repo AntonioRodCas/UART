@@ -28,6 +28,7 @@ module RX_FSM
 	input SerialDataIn,
 	input clk,
 	input reset,
+	input parity,
 	
 	output reg shift_RX,
 	output reg ready
@@ -61,7 +62,7 @@ FSM_sampling 		   	        //Counter for the FSM bit sampling
 FlagCounter
 #(
 	.NBITS(8),
-	.VALUE((WORD_LENGTH*16)+9)
+	.VALUE(((WORD_LENGTH+1)*16)+9)
 ) 
 FSM_counter 		   	        //Counter for the FSM bit counting
 (

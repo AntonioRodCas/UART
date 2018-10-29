@@ -63,7 +63,7 @@ end
 
 /*********************************************************/
 initial begin // DATATX 
-	#5 DATATX_tb = 5;
+	#5 DATATX_tb = 7;
 end
 
 
@@ -87,6 +87,7 @@ initial begin // Serial Data IN
 	#64 SerialDataIn_tb = 1;
 	#64 SerialDataIn_tb = 1;
 	#64 SerialDataIn_tb = 0;
+	#64 SerialDataIn_tb = 0; //Parity Bit
 	#64 SerialDataIn_tb = 1;
 	#15 SerialDataIn_tb= 0;
 	#64 SerialDataIn_tb = 1;
@@ -103,7 +104,7 @@ end
 /*********************************************************/
 initial begin // Clear RX
 	#0 Clear_RX_Flag_tb = 0;
-	#660 Clear_RX_Flag_tb = 1;
+	#724 Clear_RX_Flag_tb = 1;
 	#5 Clear_RX_Flag_tb = 0;
 end
 
