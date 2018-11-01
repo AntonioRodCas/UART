@@ -63,7 +63,7 @@ end
 
 /*********************************************************/
 initial begin // DATATX 
-	#5 DATATX_tb = 7;
+	#5 DATATX_tb = 50;
 end
 
 
@@ -87,9 +87,9 @@ initial begin // Serial Data IN
 	#64 SerialDataIn_tb = 1;
 	#64 SerialDataIn_tb = 1;
 	#64 SerialDataIn_tb = 0;
-	#64 SerialDataIn_tb = 0; //Parity Bit
+	#64 SerialDataIn_tb = 1; //Parity Bit
 	#64 SerialDataIn_tb = 1;
-	#15 SerialDataIn_tb= 0;
+	#120 SerialDataIn_tb= 0;
 	#64 SerialDataIn_tb = 1;
 	#64 SerialDataIn_tb = 0;
 	#64 SerialDataIn_tb = 0;

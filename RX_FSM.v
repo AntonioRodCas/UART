@@ -7,9 +7,10 @@
 *  SerialDataIn: Serial Data Input 
 *	clk: Clock signal 
 *  reset: Reset signal
+*	parity: parity bit from RX Shift Register
 * Outputs:
 *  shift: Shift enable input
-*  ready: Ready flag signañ
+*  ready: Ready flag signal
 * Versión:  
 *	1.0
 * Author: 

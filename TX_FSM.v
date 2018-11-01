@@ -4,12 +4,13 @@
 * Description:
 * 	This is a Finite State Machine for TX module of the UART
 * Inputs:
-*  SerialDataIn: Serial Data Input 
+*  Transmit: Transmit trigger signal
 *	clk: Clock signal 
 *  reset: Reset signal
 * Outputs:
 *  shift: Shift enable input
-*  ready: Ready flag signañ
+*  load: load signal
+*	transmit_int: Internal transmit signal
 * Versión:  
 *	1.0
 * Author: 

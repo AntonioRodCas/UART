@@ -10,6 +10,8 @@
 *  shift: Shift enable input
 * Outputs:
 * 	DataRX: Parallel Data Output
+*  parity: parity bit received 
+*  parity_int: calculated parity bit over RX data
 * Versión:  
 *	1.0
 * Author: 

@@ -8,14 +8,17 @@
 *	clk: Clock signal 
 *  reset: Reset signal
 *  shift: Shift enable input
+*  load:  Load signal
+*	DATATX: 8 bit input data to be transmited
+*  transmit_int: Internal transmit trigger signal
 * Outputs:
-* 	Q: Parallel Data Output
+* 	SerialDataOut: Serial DAta Out signal
 * Versión:  
 *	1.0
 * Author: 
 *	José Antonio Rodríguez Castañeda  md193781
 * Date :
-*	V1.0       24/10/2018
+*	V1.0       01/11/2018
 * 
 *********************************************************************/
 
@@ -37,22 +40,22 @@ module TX_SR
 
 );
 
-reg [WORD_LENGTH+1 : 0] DataTX_reg;
+reg [WORD_LENGTH+2 : 0] DataTX_reg;
 wire parity_wir;
 
 always @(posedge clk or negedge reset) 
 begin
 	if(reset==1'b0) 
 	begin
-		DataTX_reg <= {(WORD_LENGTH) {1'b0}};
+		DataTX_reg <= {(WORD_LENGTH+1) {1'b0}};
 	end
 	
 	else 
 		if (load)
-			DataTX_reg <= {parity_wir ,DataTX , 1'b0};
+			DataTX_reg <= {1'b1, parity_wir ,DataTX , 1'b0};
 		else
 			if (shift)
-				DataTX_reg <= {1'b0 , DataTX_reg[WORD_LENGTH+1:1]};
+				DataTX_reg <= {1'b0 , DataTX_reg[WORD_LENGTH+2:1]};
 			else
 				DataTX_reg <= DataTX_reg;
 
